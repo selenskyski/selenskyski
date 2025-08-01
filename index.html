@@ -15,17 +15,6 @@
             background-color: #000;
             font-family: Arial, sans-serif;
         }
-        .server-link {
-            position: absolute;
-            top: 20px;
-            font-size: 24px;
-            color: #fff;
-            text-decoration: underline;
-            cursor: pointer;
-        }
-        .server-link:hover {
-            color: #00ff00;
-        }
         .card {
             width: 300px;
             height: 400px;
@@ -41,7 +30,7 @@
         .profile-pic {
             width: 150px;
             height: 150px;
-            background: url('https://github.com/user-attachments/assets/a3252842-4e43-417e-9a7d-42d25252d52e') no-repeat center;
+            background: url('profile-picture.jpg') no-repeat center;
             background-size: cover;
             border-radius: 50%;
             margin-bottom: 20px;
@@ -54,14 +43,13 @@
     </style>
 </head>
 <body>
-    <a href="https://discord.gg/jdvvHsmksu" class="server-link">Proxium Discord Server</a>
     <div class="card">
         <div class="profile-pic"></div>
         <p class="random-text" id="randomText">Loading...</p>
     </div>
 
     <script>
-        const randomMessages = ["How did you get here?", "Hello!", "Welcome!", "Nice to see you!"];
+        const randomMessages = ["How did you get here?", "Hey", "Welcome", "good morning"];
         const randomText = document.getElementById('randomText');
         randomText.textContent = randomMessages[Math.floor(Math.random() * randomMessages.length)];
     </script>
