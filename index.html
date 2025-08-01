@@ -9,49 +9,122 @@
             margin: 0;
             padding: 0;
             height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #000;
+            background-color: #1a1a1a;
+            overflow: hidden;
             font-family: Arial, sans-serif;
+            position: relative;
+        }
+        .title {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ccc;
+            font-size: 48px;
+            text-align: center;
+            z-index: 1;
+        }
+        .subtitle {
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #999;
+            font-size: 24px;
+            text-align: center;
+            z-index: 1;
         }
         .card {
-            width: 300px;
-            height: 400px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
+            width: 200px;
+            height: 100px;
+            background: rgba(50, 50, 50, 0.8);
+            border-radius: 10px;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        .profile-pic {
-            width: 150px;
-            height: 150px;
-            background: url('profile-picture.jpg') no-repeat center;
-            background-size: cover;
-            border-radius: 50%;
-            margin-bottom: 20px;
-        }
-        .random-text {
+            position: absolute;
+            backdrop-filter: blur(5px);
             color: #fff;
             font-size: 18px;
-            text-align: center;
+            transition: transform 0.1s;
         }
+        .profile-pic {
+            width: 50px;
+            height: 50px;
+            background: no-repeat center;
+            background-size: cover;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        #card1 .profile-pic { background-image: url('profile1.jpg'); }
+        #card2 .profile-pic { background-image: url('profile2.jpg'); }
     </style>
 </head>
 <body>
-    <div class="card">
+    <div class="title">ski</div>
+    <div class="subtitle" id="subtitle">Loading...</div>
+    <div class="card" id="card1">
         <div class="profile-pic"></div>
-        <p class="random-text" id="randomText">Loading...</p>
+        <span>selensky</span>
+    </div>
+    <div class="card" id="card2">
+        <div class="profile-pic"></div>
+        <span>ken</span>
     </div>
 
     <script>
-        const randomMessages = ["How did you get here?", "Hey", "Welcome", "good morning"];
-        const randomText = document.getElementById('randomText');
-        randomText.textContent = randomMessages[Math.floor(Math.random() * randomMessages.length)];
+        const cards = document.querySelectorAll('.card');
+        const container = document.body;
+        const speed = 2;
+        let velocities = [];
+
+        cards.forEach(card => {
+            let x = Math.random() * (container.clientWidth - card.clientWidth);
+            let y = Math.random() * (container.clientHeight - card.clientHeight);
+            card.style.left = x + 'px';
+            card.style.top = y + 'px';
+            velocities.push({
+                x: (Math.random() - 0.5) * speed,
+                y: (Math.random() - 0.5) * speed
+            });
+        });
+
+        function animate() {
+            cards.forEach((card, index) => {
+                let rect = card.getBoundingClientRect();
+                let vel = velocities[index];
+
+                let newX = rect.left + vel.x;
+                let newY = rect.top + vel.y;
+
+                if (newX <= 0 || newX + rect.width >= container.clientWidth) {
+                    vel.x = -vel.x;
+                    newX = Math.max(0, Math.min(newX, container.clientWidth - rect.width));
+                }
+                if (newY <= 0 || newY + rect.height >= container.clientHeight) {
+                    vel.y = -vel.y;
+                    newY = Math.max(0, Math.min(newY, container.clientHeight - rect.height));
+                }
+
+                card.style.left = newX + 'px';
+                card.style.top = newY + 'px';
+            });
+            requestAnimationFrame(animate);
+        }
+
+        const subtitles = ["why are you here", "hello", "I'm so cool", "I love hot chocolate"];
+        const subtitleElement = document.getElementById('subtitle');
+        let currentIndex = 0;
+
+        function changeSubtitle() {
+            subtitleElement.textContent = subtitles[currentIndex];
+            currentIndex = (currentIndex + 1) % subtitles.length;
+        }
+
+        changeSubtitle(); // Initial call
+        setInterval(changeSubtitle, 2000); // Change every 2 seconds
+
+        animate();
     </script>
 </body>
 </html>
