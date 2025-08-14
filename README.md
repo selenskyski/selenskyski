@@ -1,1 +1,1 @@
-hello I'm selesky and this is my bio I have stupid projects in my repositories do NOT check them out
+![logo](https://github.com/user-attachments/assets/05daea90-8f13-4362-922e-444150e4d76d)
