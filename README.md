@@ -11,10 +11,10 @@
 
 ###  About Me
 
-- I’m currently working on **Proxium** – short description.  
+- I’m currently working on **uplock** – short description.  
 - I’m passionate about **html**, **lua**, 
 - When I’m not coding, I enjoy **music**, **instrument's**.  
-
+- i used too make Roblox exploits - note i don't do it anymore 
 ---
 
 ###  Skills & Tools
@@ -25,9 +25,9 @@
 
 ---
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/YOUR_LINKEDIN)  
-[![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/YOUR_TWITTER)  
-[![Website](https://img.shields.io/badge/Website-333333?style=for-the-badge&logo=aboutme&logoColor=white)](https://yourwebsite.com)  
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/samuel-undefined)  
+[![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/selenskyski)  
+[![funny Website](https://img.shields.io/badge/Website-333333?style=for-the-badge&logo=aboutme&logoColor=white)](https://selenskyski.github.io/selenskyski/)  
 
 ---
 
