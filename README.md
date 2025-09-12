@@ -1,7 +1,7 @@
 ![icon](https://github.com/user-attachments/assets/c4b25443-b306-4fb9-b3e0-4cefe39a6b61)
 
 <div align="center">
-  <h1>Hi there, I'm **kalen Samuel** </h1>
+  <h1>Hi there, I'm kalen Samuel </h1>
   <p>
     <img src="https://readme-typing-svg.herokuapp.com/?font=Inter&size=48&center=true&vCenter=true&width=500&height=70&color=4493F8&duration=4000&lines=Hi+There!+I%27m+selensky+.;+Welcome+to+my+GitHub+Profile!" />
   </p>
@@ -11,7 +11,7 @@
 
 ###  About Me
 
-- I’m currently working on **[Proxium]** – short description.  
+- I’m currently working on **Proxium** – short description.  
 - I’m passionate about **html**, **lua**, 
 - When I’m not coding, I enjoy **music**, **instrument's**.  
 
