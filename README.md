@@ -25,7 +25,7 @@
 
 ---
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/samuel-undefined)  
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/samuel-undefined-759328384?trk=contact-info)  
 [![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/selenskyski)  
 [![funny Website](https://img.shields.io/badge/Website-333333?style=for-the-badge&logo=aboutme&logoColor=white)](https://selenskyski.github.io/selenskyski/)  
 
