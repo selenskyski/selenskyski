@@ -3,7 +3,7 @@
 <div align="center">
   <h1>Hi there, I'm **kalen Samuel** </h1>
   <p>
-    <img src="https://readme-typing-svg.herokuapp.com/?font=Inter&size=48&center=true&vCenter=true&width=500&height=70&color=4493F8&duration=4000&lines=Hi+There!+I%27m+Your+Name+.;+Welcome+to+my+GitHub+Profile!" />
+    <img src="https://readme-typing-svg.herokuapp.com/?font=Inter&size=48&center=true&vCenter=true&width=500&height=70&color=4493F8&duration=4000&lines=Hi+There!+I%27m+selensky+.;+Welcome+to+my+GitHub+Profile!" />
   </p>
 </div>
 
@@ -31,11 +31,5 @@
 
 ---
 
-<div align="center">
-  <img width="390" src="https://github-readme-stats.vercel.app/api?username=YOUR_USERNAME&theme=transparent&count_private=true&show_icons=true&locale=en" alt="GitHub Stats" />
-  <img width="390" src="https://github-readme-stats.vercel.app/api/top-langs?username=YOUR_USERNAME&theme=transparent&layout=donut&hide=css&langs_count=8&border_radius=10&show_icons=true&locale=en" alt="Top Languages" />
-</div>
-
----
 
 
