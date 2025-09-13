@@ -1,7 +1,7 @@
 ![logo](https://github.com/user-attachments/assets/d7e36ece-0866-431c-99c8-5b10e256916d)
 
 <div align="center">
-  <h1>Hi there, I'm kalen Samuel </h1>
+  <h1>welcome! </h1>
   <p>
     <img src="https://readme-typing-svg.herokuapp.com/?font=Inter&size=48&center=true&vCenter=true&width=500&height=70&color=4493F8&duration=4000&lines=Hi+There!+I%27m+selensky+.;+Welcome+to+my+GitHub+Profile!" />
   </p>
