@@ -53,3 +53,11 @@
   </p>
 
 ---
+<details>
+  <summary> Click to expand — My Spotify data</summary>
+
+  <a href="https://data-card-for-spotify.herokuapp.com/card?user_id=31jf2cnvj5b6azusmeg6kvfl2vbq">
+  <img src="https://data-card-for-spotify.herokuapp.com/api/card?user_id=31jf2cnvj5b6azusmeg6kvfl2vbq" alt="Data Card for Spotify">
+</a>
+
+---
