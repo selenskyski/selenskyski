@@ -14,7 +14,7 @@
 - I’m currently working on **uplock** – short description.  
 - I’m passionate about **html**, **lua**, 
 - When I’m not coding, I enjoy **music**, **instrument's**.  
-- i used too make Roblox exploits - ⚠️ i don't do it anyone unless you have payment for a Commission
+- i used too make Roblox exploits - ⚠️ i don't do it anymore unless you have payment for a Commission
 ---
 
 ###  Skills & Tools
