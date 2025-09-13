@@ -49,9 +49,4 @@
     <img alt="Top Languages" src="https://github-readme-stats.vercel.app/api/top-langs/?username=selenskyski&hide=css,html&layout=compact" />
   </p>
 
-  <!-- Contribution graph / activity (if you want the snake or activity graph, add the action that produces it) -->
-  <p align="center">
-    <img alt="Contribution Graph" src="https://github-readme-activity-graph.cyclic.app/graph?username=selenskyski&theme=github" />
-  </p>
-
-  
+---
