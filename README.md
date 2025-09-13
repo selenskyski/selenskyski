@@ -1,5 +1,3 @@
-![icon](https://github.com/user-attachments/assets/c4b25443-b306-4fb9-b3e0-4cefe39a6b61)
-
 <div align="center">
   <h1>Hi there, I'm kalen Samuel </h1>
   <p>
@@ -38,5 +36,22 @@
 
 ---
 
+<details>
+  <summary> Click to expand — My GitHub Stats & Activity</summary>
 
+  <!-- GitHub readme stats - replace `selenskyski` with your username if different -->
+  <p align="center">
+    <img alt="Kalen's GitHub Stats" src="https://github-readme-stats.vercel.app/api?username=selenskyski&show_icons=true&count_private=true&include_all_commits=true" />
+  </p>
 
+  <!-- Top languages -->
+  <p align="center">
+    <img alt="Top Languages" src="https://github-readme-stats.vercel.app/api/top-langs/?username=selenskyski&hide=css,html&layout=compact" />
+  </p>
+
+  <!-- Contribution graph / activity (if you want the snake or activity graph, add the action that produces it) -->
+  <p align="center">
+    <img alt="Contribution Graph" src="https://github-readme-activity-graph.cyclic.app/graph?username=selenskyski&theme=github" />
+  </p>
+
+  
