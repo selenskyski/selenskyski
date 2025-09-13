@@ -14,7 +14,7 @@
 - I’m currently working on **uplock** – short description.  
 - I’m passionate about **html**, **lua**, 
 - When I’m not coding, I enjoy **music**, **instrument's**.  
-- i used too make Roblox exploits - note i don't do it anymore 
+- i used too make Roblox exploits - ⚠️ i don't do it anyone unless you have payment for a Commission
 ---
 
 ###  Skills & Tools
@@ -23,6 +23,13 @@
   <img src="https://skillicons.dev/icons?i=python,js,react,nodejs,html,css,git,linux,aws,postgres" />
 </p>
 
+---
+### what im learning 
+- in the process of learning how to animate
+- Deepening my understanding of *System Design*.  
+- Exploring *Advanced Docker & Kubernetes workflows*.  
+- Building something cool with *Machine Learning / AI / Data Science*.
+  
 ---
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/samuel-undefined-759328384?trk=contact-info)  
