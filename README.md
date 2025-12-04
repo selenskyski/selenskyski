@@ -10,12 +10,6 @@
                                                                       
                                                                       
 ```
-
-###  About Me
-
-- I’m currently working on **uplock** – short description.  
-- I’m passionate about **html**, **lua**, 
-- When I’m not coding, I enjoy **music**, **instrument's**.  
 ---
 
 ###  Skills & Tools
@@ -37,28 +31,3 @@
 [![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/selenskyski)  
 [![funny Website](https://img.shields.io/badge/Website-333333?style=for-the-badge&logo=aboutme&logoColor=white)](https://selenskyski.github.io/selenskyski/)  
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://ko-fi.com/samuel76275)  
-
----
-
-<details>
-  <summary> Click to expand — My GitHub Stats & Activity</summary>
-
-  <!-- GitHub readme stats - replace `selenskyski` with your username if different -->
-  <p align="center">
-    <img alt="Kalen's GitHub Stats" src="https://github-readme-stats.vercel.app/api?username=selenskyski&show_icons=true&count_private=true&include_all_commits=true" />
-  </p>
-
-  <!-- Top languages -->
-  <p align="center">
-    <img alt="Top Languages" src="https://github-readme-stats.vercel.app/api/top-langs/?username=selenskyski&hide=css,html&layout=compact" />
-  </p>
-
----
-<details>
-  <summary> Click to expand — My Spotify data</summary>
-
-  <a href="https://data-card-for-spotify.herokuapp.com/card?user_id=31jf2cnvj5b6azusmeg6kvfl2vbq">
-  <img src="https://data-card-for-spotify.herokuapp.com/api/card?user_id=31jf2cnvj5b6azusmeg6kvfl2vbq" alt="Data Card for Spotify">
-</a>
-
----
