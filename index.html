@@ -1,54 +1,305 @@
-<!-- From Uiverse.io by pharmacist-sabot --> 
-<div class="card-container">
-  <div class="card">
-    <div class="card-header">
-      <div class="card-tabs">
-        <div class="card-tab active">Create an HTTP Server</div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div class="line-numbers">
-        <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span
-        ><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span
-        ><span>11</span><span>12</span><span>13</span><span>14</span>
-      </div>
-      <pre
-        class="code-content"
-      ><code><span class="code-comment">// server.mjs</span>
-<span class="code-keyword">import</span> { <span class="code-variable">createServer</span> } <span class="code-keyword">from</span> <span class="code-string">'node:http'</span>;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio Profile</title>
+    <style>
+        /* --- 1. CSS Variables & Reset --- */
+        :root {
+            --primary-color: #4a90e2;
+            --bg-body: #f0f2f5;
+            --bg-card: #ffffff;
+            --text-main: #333333;
+            --text-secondary: #666666;
+            --shadow: 0 4px 12px rgba(0,0,0,0.1);
+            --radius: 16px;
+            
+            /* Dark Mode Variables for the About Section */
+            --about-bg-light: #ffffff;
+            --about-text-light: #333333;
+            --about-bg-dark: #2c3e50;
+            --about-text-dark: #ecf0f1;
+        }
 
-<span class="code-keyword">const</span> <span class="code-variable-2">server</span> = <span class="code-function">createServer</span>((<span class="code-variable-2">req</span>, <span class="code-variable-2">res</span>) =&gt; {
-  <span class="code-variable-2">res</span>.<span class="code-function">writeHead</span>(<span class="code-number">200</span>, { <span class="code-string">'Content-Type'</span>: <span class="code-string">'text/plain'</span> });
-  <span class="code-variable-2">res</span>.<span class="code-function">end</span>(<span class="code-string">'Hello World!\n'</span>);
-});
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: all 0.3s ease;
+        }
 
-<span class="code-comment">// starts a simple http server locally on port 3000</span>
-<span class="code-variable-2">server</span>.<span class="code-function">listen</span>(<span class="code-number">3000</span>, <span class="code-string">'127.0.0.1'</span>, () =&gt; {
-  <span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">'Listening on 127.0.0.1:3000'</span>);
-});
+        body {
+            background-color: var(--bg-body);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-<span class="code-comment">// run with `node server.mjs`</span>
-</code></pre>
+        /* --- 2. Main Layout Container --- */
+        .container {
+            display: flex;
+            flex-direction: row;
+            gap: 24px;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        /* Responsive: Stack vertically on mobile */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+        }
+
+        /* --- 3. Profile Card Component --- */
+        .profile-card {
+            background-color: var(--bg-card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 40px;
+            text-align: center;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-img-container {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border: 4px solid var(--primary-color);
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-name {
+            font-size: 1.8rem;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .profile-title {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .profile-details {
+            list-style: none;
+            width: 100%;
+            text-align: left;
+            margin-top: 10px;
+        }
+
+        .profile-details li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .profile-details li:last-child {
+            border-bottom: none;
+        }
+
+        /* --- 4. About Me Section (The Toggleable Area) --- */
+        .about-section {
+            flex: 2;
+            background-color: var(--about-bg-light);
+            color: var(--about-text-light);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 40px;
+            position: relative; /* For toggle positioning */
+        }
+
+        /* Dark Mode State for About Section */
+        .about-section.dark-mode {
+            background-color: var(--about-bg-dark);
+            color: var(--about-text-dark);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+        }
+
+        .about-section h2 {
+            font-size: 1.5rem;
+        }
+
+        .about-section p {
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .btn-contact {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 24px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+        }
+
+        .btn-contact:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* --- 5. The Toggle Switch --- */
+        .theme-toggle-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .switch input { 
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--primary-color);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="profile-card">
+            <div class="profile-img-container">
+                <img src="https://ui-avatars.com/api/?name=Alex+Doe&background=4a90e2&color=fff&size=256" alt="Profile Picture" class="profile-img">
+            </div>
+            
+            <h1 class="profile-name">Alex Doe</h1>
+            <h3 class="profile-title">Full Stack Developer</h3>
+            
+            <ul class="profile-details">
+                <li>
+                    <span>📍</span> New York, USA
+                </li>
+                <li>
+                    <span>📧</span> alex.doe@example.com
+                </li>
+                <li>
+                    <span>💼</span> Available for Hire
+                </li>
+                <li>
+                    <span>🌐</span> www.alexdoe.dev
+                </li>
+            </ul>
+        </div>
+
+        <section class="about-section" id="aboutMeSection">
+            <div class="section-header">
+                <h2>About Me</h2>
+                
+                <div class="theme-toggle-wrapper">
+                    <span>Light</span>
+                    <label class="switch">
+                        <input type="checkbox" id="themeToggle">
+                        <span class="slider"></span>
+                    </label>
+                    <span>Dark</span>
+                </div>
+            </div>
+
+            <p>
+                Hello! I'm a passionate creative professional with over 5 years of experience in building digital products. I specialize in bridging the gap between graphical design and technical implementation.
+            </p>
+            <p>
+                My journey began with simple HTML edits and has evolved into building complex single-page applications. I believe in clean code, accessible design, and user-centric interfaces.
+            </p>
+            <p>
+                When I'm not coding, you can find me hiking the nearest trails, experimenting with photography, or reading about the latest trends in AI.
+            </p>
+
+            <a href="#" class="btn-contact">Download CV</a>
+        </section>
+
     </div>
-    <div class="card-footer">
-      <span class="language-name">JavaScript</span>
-      <button class="copy-button">
-        <svg
-          stroke="currentColor"
-          fill="currentColor"
-          stroke-width="0"
-          viewBox="0 0 16 16"
-          height="1em"
-          width="1em"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1H2z"
-          ></path>
-        </svg>
-        <span class="copy-button-text">Copy to clipboard</span>
-      </button>
-    </div>
-  </div>
-</div>
+
+    <script>
+        // --- JavaScript Logic ---
+        
+        // 1. Select the Toggle Checkbox and the About Section
+        const toggleSwitch = document.getElementById('themeToggle');
+        const aboutSection = document.getElementById('aboutMeSection');
+
+        // 2. Add Event Listener to the toggle
+        toggleSwitch.addEventListener('change', function(e) {
+            if (e.target.checked) {
+                // Switch is ON -> Add dark mode class
+                aboutSection.classList.add('dark-mode');
+            } else {
+                // Switch is OFF -> Remove dark mode class
+                aboutSection.classList.remove('dark-mode');
+            }
+        });
+    </script>
+
+</body>
+</html>
