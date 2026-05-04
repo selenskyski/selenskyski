@@ -1,305 +1,390 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Profile</title>
-    <style>
-        /* --- 1. CSS Variables & Reset --- */
-        :root {
-            --primary-color: #4a90e2;
-            --bg-body: #f0f2f5;
-            --bg-card: #ffffff;
-            --text-main: #333333;
-            --text-secondary: #666666;
-            --shadow: 0 4px 12px rgba(0,0,0,0.1);
-            --radius: 16px;
-            
-            /* Dark Mode Variables for the About Section */
-            --about-bg-light: #ffffff;
-            --about-text-light: #333333;
-            --about-bg-dark: #2c3e50;
-            --about-text-dark: #ecf0f1;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bouncing Ball</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            transition: all 0.3s ease;
-        }
+    body {
+      background-color: #6e6e6e;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+    }
 
-        body {
-            background-color: var(--bg-body);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
+    #ball-container {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      pointer-events: none;
+    }
 
-        /* --- 2. Main Layout Container --- */
-        .container {
-            display: flex;
-            flex-direction: row;
-            gap: 24px;
-            max-width: 900px;
-            width: 100%;
-        }
+    #ball-label {
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      max-width: 280px;
+      text-align: center;
+      white-space: normal;
+      line-height: 1.4;
+      backdrop-filter: blur(4px);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+      transition: opacity 0.4s ease;
+    }
 
-        /* Responsive: Stack vertically on mobile */
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-            }
-        }
+    #ball {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(255,255,255,0.6);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      display: block;
+      will-change: transform;
+      cursor: pointer;
+      pointer-events: all;
+      transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    }
 
-        /* --- 3. Profile Card Component --- */
-        .profile-card {
-            background-color: var(--bg-card);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 40px;
-            text-align: center;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    #ball.rage {
+      border-color: #ff4444;
+      box-shadow: 0 0 20px 6px rgba(255, 60, 0, 0.7), 0 4px 20px rgba(0,0,0,0.4);
+    }
 
-        .profile-img-container {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin-bottom: 20px;
-            border: 4px solid var(--primary-color);
-        }
+    /* Squash/stretch wrapper */
+    #ball-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-        .profile-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+    @keyframes ripple {
+      0%   { transform: scale(0.3); opacity: 0.8; }
+      100% { transform: scale(2.8); opacity: 0; }
+    }
 
-        .profile-name {
-            font-size: 1.8rem;
-            color: var(--text-main);
-            margin-bottom: 8px;
-        }
+    .ripple-ring {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 3px solid rgba(255,255,255,0.7);
+      animation: ripple 0.55s ease-out forwards;
+      pointer-events: none;
+    }
 
-        .profile-title {
-            color: var(--primary-color);
-            font-weight: 600;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-        }
+    .ripple-ring.rage-ring {
+      border-color: rgba(255, 80, 0, 0.8);
+    }
 
-        .profile-details {
-            list-style: none;
-            width: 100%;
-            text-align: left;
-            margin-top: 10px;
-        }
+    @keyframes labelPop {
+      0%   { transform: scale(0.7); opacity: 0; }
+      60%  { transform: scale(1.12); }
+      100% { transform: scale(1);   opacity: 1; }
+    }
 
-        .profile-details li {
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+    #ball-label.pop {
+      animation: labelPop 0.4s ease forwards;
+    }
 
-        .profile-details li:last-child {
-            border-bottom: none;
-        }
-
-        /* --- 4. About Me Section (The Toggleable Area) --- */
-        .about-section {
-            flex: 2;
-            background-color: var(--about-bg-light);
-            color: var(--about-text-light);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 40px;
-            position: relative; /* For toggle positioning */
-        }
-
-        /* Dark Mode State for About Section */
-        .about-section.dark-mode {
-            background-color: var(--about-bg-dark);
-            color: var(--about-text-dark);
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 24px;
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 10px;
-        }
-
-        .about-section h2 {
-            font-size: 1.5rem;
-        }
-
-        .about-section p {
-            line-height: 1.6;
-            margin-bottom: 16px;
-        }
-
-        .btn-contact {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 24px;
-            background-color: var(--primary-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: bold;
-        }
-
-        .btn-contact:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
-
-        /* --- 5. The Toggle Switch --- */
-        .theme-toggle-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.8rem;
-        }
-
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 50px;
-            height: 24px;
-        }
-
-        .switch input { 
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 34px;
-        }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 16px;
-            width: 16px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-
-        input:checked + .slider {
-            background-color: var(--primary-color);
-        }
-
-        input:checked + .slider:before {
-            transform: translateX(26px);
-        }
-
-    </style>
+    /* Click counter badge */
+    #click-counter {
+      position: fixed;
+      bottom: 16px;
+      right: 20px;
+      color: rgba(255,255,255,0.45);
+      font-size: 12px;
+      font-family: 'Segoe UI', sans-serif;
+      pointer-events: none;
+      user-select: none;
+    }
+  </style>
 </head>
 <body>
 
-    <div class="container">
-        
-        <div class="profile-card">
-            <div class="profile-img-container">
-                <img src="https://ui-avatars.com/api/?name=Alex+Doe&background=4a90e2&color=fff&size=256" alt="Profile Picture" class="profile-img">
-            </div>
-            
-            <h1 class="profile-name">Alex Doe</h1>
-            <h3 class="profile-title">Full Stack Developer</h3>
-            
-            <ul class="profile-details">
-                <li>
-                    <span>📍</span> New York, USA
-                </li>
-                <li>
-                    <span>📧</span> alex.doe@example.com
-                </li>
-                <li>
-                    <span>💼</span> Available for Hire
-                </li>
-                <li>
-                    <span>🌐</span> www.alexdoe.dev
-                </li>
-            </ul>
-        </div>
-
-        <section class="about-section" id="aboutMeSection">
-            <div class="section-header">
-                <h2>About Me</h2>
-                
-                <div class="theme-toggle-wrapper">
-                    <span>Light</span>
-                    <label class="switch">
-                        <input type="checkbox" id="themeToggle">
-                        <span class="slider"></span>
-                    </label>
-                    <span>Dark</span>
-                </div>
-            </div>
-
-            <p>
-                Hello! I'm a passionate creative professional with over 5 years of experience in building digital products. I specialize in bridging the gap between graphical design and technical implementation.
-            </p>
-            <p>
-                My journey began with simple HTML edits and has evolved into building complex single-page applications. I believe in clean code, accessible design, and user-centric interfaces.
-            </p>
-            <p>
-                When I'm not coding, you can find me hiking the nearest trails, experimenting with photography, or reading about the latest trends in AI.
-            </p>
-
-            <a href="#" class="btn-contact">Download CV</a>
-        </section>
-
+  <div id="ball-container">
+    <div id="ball-label">bash script isn't as hard as it seems.</div>
+    <div id="ball-wrap">
+      <img id="ball" src="../uploads/416ce1375ae2a6c62b470799d8280cad_dc65c348.jpg" alt="ball" />
     </div>
+  </div>
 
-    <script>
-        // --- JavaScript Logic ---
-        
-        // 1. Select the Toggle Checkbox and the About Section
-        const toggleSwitch = document.getElementById('themeToggle');
-        const aboutSection = document.getElementById('aboutMeSection');
+  <div id="click-counter">clicks: 0 / 20</div>
 
-        // 2. Add Event Listener to the toggle
-        toggleSwitch.addEventListener('change', function(e) {
-            if (e.target.checked) {
-                // Switch is ON -> Add dark mode class
-                aboutSection.classList.add('dark-mode');
-            } else {
-                // Switch is OFF -> Remove dark mode class
-                aboutSection.classList.remove('dark-mode');
-            }
-        });
-    </script>
+  <script>
+    // ── Messages ──────────────────────────────────────────────
+    const messages = [
+      "bash script isn't as hard as it seems.",
+      "huh so I'm a ball interesting...",
+      "regular people would have a portfolio page but not me.",
+      "hot take hot chocolate is better than coffee"
+    ];
 
+    // ── DOM ───────────────────────────────────────────────────
+    const container   = document.getElementById('ball-container');
+    const label       = document.getElementById('ball-label');
+    const ball        = document.getElementById('ball');
+    const clickBadge  = document.getElementById('click-counter');
+
+    // ── Physics constants ──────────────────────────────────────
+    const RADIUS   = 50;
+    const DIAMETER = 100;
+    const GRAVITY  = 0.45;
+    const BOUNCE   = 0.72;
+    const FRICTION = 0.991;
+    const MIN_BOUNCE_VY = 1.8;
+    const PADDING  = 8;
+
+    // ── State ─────────────────────────────────────────────────
+    let x  = window.innerWidth  / 2 - RADIUS;
+    let y  = window.innerHeight / 2 - RADIUS;
+    let vx = (Math.random() > 0.5 ? 1 : -1) * (3 + Math.random() * 2);
+    let vy = -(4 + Math.random() * 3);
+    let rotation = 0;
+    let lastTime = null;
+    let scaleX = 1, scaleY = 1, squashTimer = 0;
+
+    // Text cycling
+    let msgIndex    = 0;
+    let lastMsgTime = performance.now();
+    const MSG_INTERVAL_MS = 60000;
+
+    // Rage state
+    let clickCount     = 0;
+    let rageMode       = false;
+    let ragePhase      = 'off';  // 'off' | 'chase' | 'quit'
+    let rageTimer      = 0;      // ms
+    let mouseX         = window.innerWidth / 2;
+    let mouseY         = window.innerHeight / 2;
+    let cowardSaid     = false;
+
+    const RAGE_CHASE_DURATION = 6000; // 6s of chasing then give up
+    const HIGH_THRESHOLD      = 0.28; // if mouse is above 28% from top = "too high"
+    const CHASE_SPEED         = 5.5;
+    const JUMP_VY             = -16;
+
+    // ── Helpers ───────────────────────────────────────────────
+    function getLabelHeight() { return label.offsetHeight + 8; }
+
+    function setLabel(text, pop = false) {
+      label.classList.remove('pop');
+      void label.offsetWidth; // reflow
+      label.textContent = text;
+      if (pop) label.classList.add('pop');
+    }
+
+    function fadeLabel(text, pop = false) {
+      label.style.opacity = '0';
+      setTimeout(() => {
+        setLabel(text, pop);
+        label.style.opacity = '1';
+      }, 350);
+    }
+
+    function applySquash(impactSpeed, axis) {
+      const amount = Math.min(impactSpeed / 18, 0.35);
+      if (axis === 'floor' || axis === 'ceil') {
+        scaleX = 1 + amount; scaleY = 1 - amount;
+      } else {
+        scaleX = 1 - amount; scaleY = 1 + amount;
+      }
+      squashTimer = 8;
+    }
+
+    function spawnRipple(rage = false) {
+      const ring = document.createElement('div');
+      ring.classList.add('ripple-ring');
+      if (rage) ring.classList.add('rage-ring');
+      container.appendChild(ring);
+      ring.addEventListener('animationend', () => ring.remove());
+    }
+
+    // ── Rage activation ───────────────────────────────────────
+    function activateRage() {
+      rageMode    = true;
+      ragePhase   = 'chase';
+      rageTimer   = 0;
+      cowardSaid  = false;
+      ball.classList.add('rage');
+      fadeLabel("Okay, I've had enough. Come here, you!", true);
+    }
+
+    function endRage() {
+      rageMode  = false;
+      ragePhase = 'off';
+      ball.classList.remove('rage');
+      clickCount = 0;
+      clickBadge.textContent = 'clicks: 0 / 20';
+      // Give it a random kick then let normal physics resume
+      vx = (Math.random() > 0.5 ? 1 : -1) * (3 + Math.random() * 2);
+      vy = -(5 + Math.random() * 3);
+      setTimeout(() => {
+        fadeLabel(messages[msgIndex]);
+      }, 2000);
+    }
+
+    // ── Mouse tracking ────────────────────────────────────────
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    // ── Main loop ─────────────────────────────────────────────
+    function animate(ts) {
+      if (!lastTime) lastTime = ts;
+      const dt = Math.min((ts - lastTime) / 16.67, 3);
+      lastTime = ts;
+
+      const winW   = window.innerWidth;
+      const winH   = window.innerHeight;
+      const labelH = getLabelHeight();
+
+      if (rageMode && ragePhase === 'chase') {
+        rageTimer += ts - (lastTime === ts ? ts - 16 : 0); // approximate ms
+
+        // Ball center
+        const cx = x + RADIUS;
+        const cy = y + RADIUS;
+
+        // Is mouse too high?
+        const mouseIsHigh = mouseY < winH * HIGH_THRESHOLD;
+
+        if (mouseIsHigh) {
+          // Jump toward mouse vertically
+          if (!cowardSaid) {
+            cowardSaid = true;
+            fadeLabel("come down coward, face me!", true);
+          }
+          // Chase horizontally always; jump if on or near floor
+          const floorY = winH - PADDING - DIAMETER;
+          if (y >= floorY - 5) {
+            vy = JUMP_VY;
+          }
+          // Horizontal chase
+          const dx = mouseX - cx;
+          vx += Math.sign(dx) * 1.2 * dt;
+          vx  = Math.max(-10, Math.min(10, vx));
+          // Still apply gravity
+          vy += GRAVITY * dt;
+        } else {
+          // Direct chase — steer toward mouse
+          if (cowardSaid) {
+            cowardSaid = false;
+            fadeLabel("Okay, I've had enough. Come here, you!", true);
+          }
+          const dx = mouseX - cx;
+          const dy = mouseY - cy;
+          const dist = Math.sqrt(dx*dx + dy*dy) || 1;
+          vx += (dx / dist) * CHASE_SPEED * 0.18 * dt;
+          vy += (dy / dist) * CHASE_SPEED * 0.18 * dt + GRAVITY * dt;
+          // Cap speed
+          const speed = Math.sqrt(vx*vx + vy*vy);
+          if (speed > 11) { vx = vx/speed*11; vy = vy/speed*11; }
+        }
+
+        // Give up after RAGE_CHASE_DURATION
+        if (rageTimer >= RAGE_CHASE_DURATION) {
+          ragePhase = 'quit';
+          rageTimer = 0;
+          fadeLabel("whatever, you're not worth my time.", true);
+          setTimeout(endRage, 2500);
+        }
+
+      } else {
+        // Normal physics
+        vy += GRAVITY * dt;
+        vx *= Math.pow(FRICTION, dt);
+      }
+
+      x += vx * dt;
+      y += vy * dt;
+
+      // ── Wall collisions ───────────────────────────────────
+      const floorY = winH - PADDING - DIAMETER;
+      if (y >= floorY) {
+        y = floorY;
+        const speed = Math.abs(vy);
+        if (speed < MIN_BOUNCE_VY && !rageMode) { vy = 0; }
+        else { vy = -speed * BOUNCE; applySquash(speed, 'floor'); }
+      }
+      const ceilY = labelH + PADDING;
+      if (y <= ceilY) {
+        y = ceilY;
+        vy = Math.abs(vy) * BOUNCE;
+        applySquash(Math.abs(vy), 'ceil');
+      }
+      const rightX = winW - PADDING - DIAMETER;
+      if (x >= rightX) {
+        x = rightX;
+        const speed = Math.abs(vx);
+        vx = -speed * BOUNCE;
+        applySquash(speed, 'wall');
+      }
+      if (x <= PADDING) {
+        x = PADDING;
+        const speed = Math.abs(vx);
+        vx = speed * BOUNCE;
+        applySquash(speed, 'wall');
+      }
+
+      // ── Rotation ──────────────────────────────────────────
+      rotation += vx * 1.2 * dt;
+
+      // ── Squash recovery ───────────────────────────────────
+      if (squashTimer > 0) { squashTimer -= dt; }
+      else { scaleX += (1-scaleX)*0.25; scaleY += (1-scaleY)*0.25; }
+
+      // ── Render ────────────────────────────────────────────
+      container.style.left = x + 'px';
+      container.style.top  = (y - labelH) + 'px';
+      ball.style.transform = `rotate(${rotation}deg) scaleX(${scaleX.toFixed(4)}) scaleY(${scaleY.toFixed(4)})`;
+
+      // ── Text cycling (only when not in rage) ──────────────
+      if (!rageMode && ts - lastMsgTime >= MSG_INTERVAL_MS) {
+        lastMsgTime = ts;
+        msgIndex = (msgIndex + 1) % messages.length;
+        fadeLabel(messages[msgIndex]);
+      }
+
+      // ── Rage timer accumulate (fix accumulation) ──────────
+      if (rageMode && ragePhase === 'chase') {
+        rageTimer += dt * 16.67; // convert frames to ms
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    // ── Click handler ─────────────────────────────────────────
+    ball.addEventListener('click', (e) => {
+      e.stopPropagation();
+      spawnRipple(rageMode);
+
+      if (rageMode) return; // ignore clicks during rage
+
+      clickCount++;
+      clickBadge.textContent = `clicks: ${clickCount} / 20`;
+
+      if (clickCount >= 20) {
+        activateRage();
+        return;
+      }
+
+      // Normal burst
+      vy = -(14 + Math.random() * 4);
+      vx += (Math.random() - 0.5) * 6;
+    });
+
+    container.style.position = 'absolute';
+    requestAnimationFrame(animate);
+  </script>
 </body>
 </html>
