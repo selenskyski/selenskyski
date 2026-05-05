@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bouncing snowf1</title>
+  <title>Bouncing Ball</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -45,14 +45,27 @@
       width: 100px;
       height: 100px;
       border-radius: 50%;
-      object-fit: cover;
+      background: radial-gradient(circle at 35% 35%, #555, #111);
       border: 3px solid rgba(255,255,255,0.6);
       box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       will-change: transform;
       cursor: pointer;
       pointer-events: all;
       transition: box-shadow 0.3s ease, border-color 0.3s ease;
+      user-select: none;
+    }
+
+    #ball-text {
+      color: #fff;
+      font-size: 18px;
+      font-weight: 800;
+      font-family: 'Segoe UI', sans-serif;
+      letter-spacing: 1px;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+      pointer-events: none;
     }
 
     #ball.rage {
@@ -114,7 +127,7 @@
   <div id="ball-container">
     <div id="ball-label">bash script isn't as hard as it seems.</div>
     <div id="ball-wrap">
-      <img id="ball" src="../uploads/416ce1375ae2a6c62b470799d8280cad_dc65c348.jpg" alt="ball" />
+      <div id="ball"><span id="ball-text">snowf1</span></div>
     </div>
   </div>
 
@@ -388,3 +401,4 @@
   </script>
 </body>
 </html>
+
